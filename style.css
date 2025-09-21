@@ -8,7 +8,8 @@
 
 html {
     scroll-behavior: smooth;
-    
+      overflow-x: hidden; /* horizontal scroll hide */
+    width: 100%;        /* ensure full width */
 }
 
 
@@ -177,8 +178,12 @@ body.dark-mode {
 /* ===== Sections ===== */
 section {
     padding: 60px 20px;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    section { padding: 40px 15px; }
 }
 
 
@@ -199,13 +204,14 @@ section h2 {
 }
 
 
-.hero-container::before,
+
+   .hero-container::before,
 .hero-container::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    z-index: -1;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden; /* prevent floating circles from overflowing */
 }
+
 
 
 .hero-container::before {
@@ -250,6 +256,12 @@ section h2 {
     animation: fadeInUp 0.8s forwards;
     animation-delay: 0.3s;
 }
+
+@media (max-width: 768px) {
+    .hero-container::before { width: 200px; height: 200px; top: -30px; left: -30px; }
+    .hero-container::after  { width: 150px; height: 150px; bottom: -30px; right: -15px; }
+}
+
 .hero-buttons .btn {
     margin: 10px;
     opacity: 0;
@@ -305,8 +317,10 @@ section h2 {
     gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0 10px;    
 }
 .project-card {
+    max-width: 100%;
     background: #fff;
     padding: 20px;
     border-radius: 12px;
