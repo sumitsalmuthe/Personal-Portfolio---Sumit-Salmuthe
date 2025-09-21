@@ -18,7 +18,8 @@ body {
     color: #333;
     line-height: 1.6;
     transition: background 0.5s, color 0.3s;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
@@ -179,6 +180,8 @@ section {
     padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
+    height: 100vh;
+    min-height: 100vh;
 }
 
 
