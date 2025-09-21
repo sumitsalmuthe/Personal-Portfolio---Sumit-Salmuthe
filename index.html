@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+
+// Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyBbj5jM-vY4aQ_oWv4EGUOgZB_6rZmcKf4",
+  authDomain: "portfolioauth-2dca8.firebaseapp.com",
+  projectId: "portfolioauth-2dca8",
+  storageBucket: "portfolioauth-2dca8.appspot.com",
+  messagingSenderId: "764637365796",
+  appId: "1:764637365796:web:16a41ff764bd34952c3ab1"
+};
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+window.auth = auth;
+</script>
+</head>
+<body>
+
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-container">
+      <div class="logo"><h1>Portfolio</h1></div>
+      <button class="hamburger" aria-label="Toggle navigation">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+      </button>
+      <ul class="nav-menu">
+          <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+          <li class="nav-item nav-mobile-account"><button class="btn account-btn">Account</button></li>
+      </ul>
+      <div class="nav-buttons">
+          <button class="btn account-btn">Account</button>
+          <button class="btn logout-btn" style="display:none;">Logout</button>
+      </div>
+  </div>
+</nav>
+
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-container">
+      <h1>Hi, I'm Sumit — Web Developer</h1>
+      <p>I build responsive websites & small full-stack apps. Ready for internships & freelance.</p>
+      <div class="hero-buttons">
+          <button class="btn hero-btn">
+    <a href="Sumit_Salmuthe_CS_Resume.pdf" target="_blank" style="color: inherit; text-decoration: none;">Download Resume</a>
+</button>
+
+          <button class="btn hero-btn">
+    <a href="#projects" style="color: inherit; text-decoration: none;">See Projects</a>
+</button>
+
+      </div>
+      <p class="hero-contact">Location: Nashik, India • Email: sumitsalmuthe509@gmail.com</p>
+  </div>
+
+  <div class="hero-social">
+    <a href="https://www.linkedin.com/in/sumit-salmuthe-85627927b/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+    <a href="https://github.com/sumitsalmuthe" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+</div>
+
+</section>
+
+
+<!-- Modal -->
+<div class="modal" id="authModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2 id="modalTitle">Login</h2>
+    <form id="authForm">
+      <input type="email" id="authEmail" placeholder="Email" required>
+      <input type="password" id="authPassword" placeholder="Password" required>
+      <button type="submit" id="authSubmit" class="btn">Login</button>
+
+
+    </form>
+    <p id="toggleAuthText">Don't have an account? <span id="toggleAuth" style="cursor:pointer;color:#0d6efd;">Sign Up</span></p>
+    <p id="authError" style="color:red;"></p>
+  </div>
+</div>
+
+
+<!-- About Me -->
+<section id="about" class="about-me">
+  <div class="about-me-container">
+      <h2>About Me</h2>
+      <p>I am a passionate web developer with experience in building responsive websites and full-stack applications. Skilled in HTML, CSS, JavaScript, and backend technologies. I enjoy creating efficient and user-friendly web solutions. Always eager to learn new technologies and improve my skills.</p>
+  </div>
+</section>
+
+
+<!-- Projects -->
+<section id="projects" class="projects">
+  <div class="projects-container">
+      <h2>Projects</h2>
+      <div class="project-cards">
+          <div class="project-card">
+              <img src="https://via.placeholder.com/280x150" alt="Portfolio Website" class="project-image" />
+              <h3>Portfolio Website</h3>
+              <p>A personal portfolio website showcasing my skills and projects.</p>
+              <button class="btn">Demo</button>
+          </div>
+          <div class="project-card">
+              <img src="https://via.placeholder.com/280x150" alt="Task Manager App" class="project-image" />
+              <h3>Task Manager App</h3>
+              <p>A full-stack task management app with user authentication and CRUD features.</p>
+              <button class="btn">Demo</button>
+          </div>
+          <div class="project-card">
+              <img src="https://via.placeholder.com/280x150" alt="Blog Platform" class="project-image" />
+              <h3>Blog Platform</h3>
+              <p>A blogging platform with rich text editor and comment system.</p>
+              <button class="btn">Demo</button>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- Experience & Education -->
+<section id="experience" class="experience-education">
+  <div class="experience-education-container">
+      <h2>Experience & Education</h2>
+      <div class="experience-education-wrapper">
+          <div class="experience-section">
+              <h3>Experience</h3>
+              <ul>
+                  <li>
+                      <strong>Web Developer Intern</strong> - ABC Company (Jan 2023 - Apr 2023)
+                      <p>Worked on front-end development using React and improved website performance.</p>
+                  </li>
+                  <li>
+                      <strong>Freelance Web Developer</strong> (May 2023 - Present)
+                      <p>Developed responsive websites and small full-stack applications for clients.</p>
+                  </li>
+              </ul>
+          </div>
+          <div class="education-section">
+              <h3>Education</h3>
+              <ul>
+                  <li>
+                      <strong>Bachelor of Computer Science</strong> - XYZ University (2019 - 2023)
+                      <p>Graduated with honors, focusing on software development and web technologies.</p>
+                  </li>
+                  <li>
+                      <strong>High School Diploma</strong> - ABC High School (2017 - 2019)
+                      <p>Completed high school with a focus on science and mathematics.</p>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <div class="contact-container">
+      <h2>Contact Me</h2>
+      <form id="contact-form">
+          <input type="text" name="from_name" placeholder="Your Name" required>
+          <input type="email" name="from_email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+      </form>
+      <p id="status"></p>
+  </div>
+</section>
+
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+
+<!-- JS -->
+<script type="module">
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+
+// Elements
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const accountBtns = document.querySelectorAll(".account-btn");
+const logoutBtn = document.querySelector(".logout-btn");
+const authModal = document.getElementById("authModal");
+const closeModal = document.querySelector(".close-modal");
+const modalTitle = document.getElementById("modalTitle");
+const authSubmit = document.getElementById("authSubmit");
+const toggleAuthText = document.getElementById("toggleAuthText");
+const authEmail = document.getElementById("authEmail");
+const authPassword = document.getElementById("authPassword");
+const authError = document.getElementById("authError");
+const authForm = document.getElementById("authForm");
+
+
+let isLogin = true;
+
+
+// Hamburger toggle
+hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active'); navMenu.classList.toggle('active');});
+document.querySelectorAll('.nav-menu a').forEach(link=>link.addEventListener('click',()=>{navMenu.classList.remove('active'); hamburger.classList.remove('active');}));
+
+
+// Modal open/close
+accountBtns.forEach(btn=>btn.addEventListener("click",()=>authModal.classList.add("active")));
+closeModal.addEventListener("click",()=>authModal.classList.remove("active"));
+window.onclick = e => { if(e.target === authModal) authModal.classList.remove("active"); };
+
+
+// Toggle login/signup
+function updateToggleText(){
+    toggleAuthText.innerHTML = isLogin ?
+        `Don't have an account? <span id="toggleAuth" style="cursor:pointer;color:#0d6efd;">Sign Up</span>` :
+        `Already have an account? <span id="toggleAuth" style="cursor:pointer;color:#0d6efd;">Login</span>`;
+    document.getElementById("toggleAuth").onclick = ()=>{
+        isLogin = !isLogin;
+        modalTitle.innerText = isLogin ? "Login" : "Sign Up";
+        authSubmit.innerText = isLogin ? "Login" : "Sign Up";
+        authError.innerText = "";
+        updateToggleText();
+    };
+}
+updateToggleText();
+
+
+// Auth form
+authForm.addEventListener("submit", e=>{
+    e.preventDefault();
+    const email = authEmail.value.trim();
+    const pass = authPassword.value.trim();
+    authError.innerText = "";
+    if(isLogin){
+        signInWithEmailAndPassword(auth, email, pass)
+        .then(()=>{authModal.classList.remove("active"); authForm.reset();})
+        .catch(err=>authError.innerText=err.message);
+    } else {
+        createUserWithEmailAndPassword(auth, email, pass)
+        .then(()=>{authModal.classList.remove("active"); authForm.reset();})
+        .catch(err=>authError.innerText=err.message);
+    }
+});
+
+
+// Logout
+logoutBtn.addEventListener("click",()=>signOut(auth));
+
+
+// Auth state
+onAuthStateChanged(auth, user=>{
+    accountBtns.forEach(btn=>{
+        // Only hide/show desktop buttons
+        if(btn.closest('.nav-buttons')) {
+            btn.style.display = user ? "none" : "inline-block";
+        }
+    });
+    logoutBtn.style.display = user ? "inline-block" : "none";
+});
+
+
+// EmailJS
+emailjs.init("lsjGNotDqs3CB77bV");
+document.getElementById("contact-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    emailjs.sendForm("service_yd0qgrn","template_6nidhnq",this)
+    .then(()=>{document.getElementById("status").innerHTML="✅ Message Sent Successfully!"; document.getElementById("status").style.color="green"; this.reset();},
+          err=>{document.getElementById("status").innerHTML="❌ Failed to send: "+err.text; document.getElementById("status").style.color="red";}
+    );
+});
+</script>
+</body>
+</html>

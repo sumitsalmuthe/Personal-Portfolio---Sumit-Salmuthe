@@ -1,0 +1,460 @@
+/* ===== Reset & Base Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f6fbff, #e0f7fa);
+    color: #333;
+    line-height: 1.6;
+    transition: background 0.5s, color 0.3s;
+    overflow: hidden;
+}
+
+
+/* ===== Dark Mode ===== */
+body.dark-mode {
+    background: linear-gradient(135deg, #121212, #1a1a1a);
+    color: #f0f0f0;
+}
+
+
+/* ===== Navbar ===== */
+.navbar {
+    background-color: rgba(51, 51, 51, 0.95);
+    color: #fff;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #0d6efd;
+    transition: width 0.3s ease-in-out;
+}
+
+
+.nav-link:hover {
+    color: #0d6efd;
+}
+
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+
+.nav-buttons button {
+    margin-left: 10px;
+}
+
+
+.nav-buttons-mobile {
+    display: none;
+}
+/* Mobile pe show, desktop pe hide */
+.nav-mobile-account {
+    display: none; /* Desktop default hide */
+}
+
+
+@media screen and (max-width: 768px) {
+    .nav-mobile-account {
+        display: block; /* Mobile show */
+    }
+}
+
+
+
+
+/* ===== Hamburger Menu ===== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    border: none;
+    background: none;
+}
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    transition: all 0.3s;
+}
+.hamburger.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* ===== Responsive Navbar ===== */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed; /* pehle absolute tha */
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: #333;
+        width: 220px;
+        height: calc(100vh - 70px); /* pura screen ke liye */
+        padding: 20px;
+        transition: right 0.3s ease-in-out;
+        border-radius: 0 0 8px 8px;
+    }
+    .nav-menu.active {
+        right: 0;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .nav-buttons {
+        display: none;
+    }
+    .nav-buttons-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+}
+
+
+/* ===== Sections ===== */
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* ===== Section Headings ===== */
+section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    color: #0d6efd;
+}
+
+
+/* ===== Hero Section ===== */
+.hero-container {
+    text-align: center;
+    padding-top: 50px;
+    position: relative;
+}
+
+
+.hero-container::before,
+.hero-container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+
+.hero-container::before {
+    width: 300px;
+    height: 300px;
+    background: rgba(13, 110, 253, 0.2);
+    top: -50px;
+    left: -50px;
+    animation: float 6s ease-in-out infinite alternate;
+}
+
+
+.hero-container::after {
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 200, 83, 0.2);
+    bottom: -50px;
+    right: -30px;
+    animation: float 8s ease-in-out infinite alternate-reverse;
+}
+
+
+@keyframes float {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(20px); }
+    100% { transform: translateY(0) translateX(0); }
+}
+
+
+.hero-container h1 {
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+.hero-container p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+    animation-delay: 0.3s;
+}
+.hero-buttons .btn {
+    margin: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+    animation-delay: 0.6s;
+}
+
+.hero-social {
+    margin-top: 20px; /* adjust vertical spacing */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero-social a {
+    color: #0d6efd;  /* LinkedIn color, change if needed */
+    transition: transform 0.3s, color 0.3s;
+}
+
+.hero-social a:hover {
+    transform: scale(1.2);
+    color: #0056b3;
+}
+
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ===== Buttons ===== */
+.btn {
+    padding: 10px 20px;
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+    display: inline-block;
+}
+.btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px) scale(1.05);
+}
+
+
+/* ===== Projects Section ===== */
+.project-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.project-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+.project-card img {
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.project-card .btn {
+    margin-top: 15px; /* spacing between text and button */
+}
+
+
+/* ===== About Me Section ===== */
+.about-me-container {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    text-align: center;
+}
+.about-me-container p {
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+
+/* ===== Experience & Education Section ===== */
+.experience-education-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+.experience-section,
+.education-section {
+    width: 48%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+.experience-section ul,
+.education-section ul {
+    list-style: none;
+    margin-top: 15px;
+}
+.experience-section li,
+.education-section li {
+    margin-bottom: 15px;
+}
+@media (max-width: 768px) {
+    .experience-education-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .experience-section,
+    .education-section { width: 100%; }
+}
+
+
+/* ===== Contact Section ===== */
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+    text-align: center;
+}
+.contact-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+.contact-container input,
+.contact-container textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+.contact-container input:focus,
+.contact-container textarea:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13,110,253,0.2);
+}
+.contact-container button { width: fit-content; margin: 0 auto; }
+
+
+/* ===== Modal ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    z-index: 1000;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+}
+.modal.active {
+    display: block;
+}
+.modal.dark-mode { background: #1a1a1a; color: #fff; }
+.modal-content input {
+    margin: 10px 0;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+.modal-content .btn {
+    width: 100%;
+    margin-top: 15px;
+}
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+
+/* ===== Smooth Scroll & Transitions ===== */
+a { transition: color 0.3s; }
+* { transition: all 0.3s; }
+
+/* ===== Mobile Account Button Fix ===== */
+.nav-mobile-account .account-btn {
+    display: block;       /* Ensure visible in mobile menu */
+    width: 100%;          /* Optional: full width inside menu */
+    margin: 10px 0;       /* Optional spacing */
+}
+
+/* Ensure JS doesn't hide mobile button */
+@media (max-width: 768px) {
+    .nav-buttons .account-btn {
+        display: none;    /* Hide desktop button in mobile */
+    }
+}
